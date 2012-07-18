@@ -1,0 +1,17 @@
+---
+name: SM
+
+View::TT:
+    WRAPPER: 'wrapper.tt'
+
+InstantCRUDStylish:
+    model_name: DBICSchemamodel
+    schema_name: DBSchema
+    maxrows: 10
+
+Model::DBICSchemamodel:
+    connect_info:
+        dsn: "dbi:mysql:dbname=srvmanager;host=mysql01.beer.linux-kernel.at"
+        user: srvmanager
+        password: 
+

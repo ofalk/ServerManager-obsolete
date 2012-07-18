@@ -1,0 +1,34 @@
+[% IF pager %]
+<center>
+    <div class="pagination-space">
+      <div class="span-6 height35 paddingTop5 paddingBottom5">
+      Pages:
+[%#        Page pager.current_page of pager.last_page %]
+
+       [%  
+           start = (pager.current_page - 3) > 0               ? (pager.current_page - 3) : 1;
+           end   = (pager.current_page + 3) < pager.last_page ? (pager.current_page + 3) : pager.last_page;
+           FOREACH page IN [ start .. end  ]
+       %] 
+           [% IF pager.current_page == page %]
+               <a class="current"> [% page %] </a>
+           [% ELSE %]
+               <a href="[% c.req.uri_with( page => page ) %]">[% page %]</a>
+           [% END %]
+       [% END %]
+      </div>
+      <div class="span-8 last height35 paddingTop5 paddingBottom5">
+       [% IF pager.previous_page %]
+           <a href="[% c.req.uri_with( page => pager.first_page ) %]" class="noborder">&laquo; First</a>
+           <a href="[% c.req.uri_with( page => pager.previous_page ) %]" class="noborder">&lt; Previous </a>
+       [% END %]
+        |
+       [% IF pager.next_page %]
+           <a href="[% c.req.uri_with( page => pager.next_page ) %]" class="noborder">Next &gt; </a>
+           <a href="[% c.req.uri_with( page => pager.last_page ) %]" class="noborder">Last &raquo; </a>
+       [% END %]
+      </div>
+   </div>
+</center>
+[% END %]
+

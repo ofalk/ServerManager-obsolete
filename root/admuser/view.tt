@@ -1,0 +1,282 @@
+
+  <div class="span-4">
+    [% PROCESS 'src/include/left_menu.tt2' %]
+  </div>
+
+  <div class="span-20 top-options last">
+    <a class="button positive" href="[% c.uri_for( 'list' ) %]">
+      <img src='/static/images/iconpack/application_view_list.png' alt='list' title="list"></img>
+      list
+    </a>
+    <a class="button" href="[% c.uri_for( 'edit',  item.user_id, ,  ) %]">
+      <img src='/static/images/iconpack/application_edit.png' alt='edit' title="edit"></img>
+      edit
+    </a>
+      <a class="thickbox negative button" href="[% c.uri_for( 'destroy', item.user_id, , { height => 100, width => 400 }  ) %]">
+        <img src='/static/images/iconpack/delete.png' alt='delete' title="delete"></img>
+        remove
+      </a>
+    
+    <div class="span-20 last">
+      <div class="span-20 last viewTitleBorders">
+        <h1 class='loud'>[% page_html.title || item %]</h1>
+      </div>
+      <div class='span-3 clear'>
+        <img src="/static/images/no_image.gif" width="70" height="70"></img>
+      </div>
+      <div class="span-17 last">
+        
+          
+        
+          
+            <div class='span-17 borderBottomlight'>
+                <div class="quiet span-3 clear">
+                  Adm Department:
+                </div>  
+                <div class="loud span-14 last">
+                  
+                  [%  item.adm_department %]
+                  
+                </div>  
+            </div>  
+          
+        
+          
+        
+          
+            <div class='span-17 borderBottomlight'>
+                <div class="quiet span-3 clear">
+                  Adm Role:
+                </div>  
+                <div class="loud span-14 last">
+                  
+                  [%  item.adm_role %]
+                  
+                </div>  
+            </div>  
+          
+        
+          
+        
+          
+        
+          
+            <div class='span-17 borderBottomlight'>
+                <div class="quiet span-3 clear">
+                  X Key:
+                </div>  
+                <div class="loud span-14 last">
+                  
+                  [%  item.x_key %]
+                  
+                </div>  
+            </div>  
+          
+        
+          
+            <div class='span-17 borderBottomlight'>
+                <div class="quiet span-3 clear">
+                  Full Name:
+                </div>  
+                <div class="loud span-14 last">
+                  
+                  [%  item.full_name %]
+                  
+                </div>  
+            </div>  
+          
+        
+          
+            <div class='span-17 borderBottomlight'>
+                <div class="quiet span-3 clear">
+                  Mail Address:
+                </div>  
+                <div class="loud span-14 last">
+                  
+                  [%  item.mail_address %]
+                  
+                </div>  
+            </div>  
+          
+        
+      </div>
+
+        
+          
+            <div class='span-20 '>
+              <div class="span-3 clear quiet">adm_user2groups:</div>
+              <div class="span-17 borderBottomlight last">
+                <div class="quiet span-1 clear">[% item.adm_user2groups_rs.count %]</div>
+                <div class="loud span-13 last">
+                  [% IF item.adm_user2groups_rs.count > 0 ; %]
+                
+                  [% FOR val = item.adm_user2groups; %]
+
+                      <div class="span-2 row-button clear">
+                        <a href="/[% item.adm_user2groups_rs.result_source.source_name FILTER lower %]/destroy/[% val.user_id %]?height=100&width=250&keepThis=true&TB_iframe=true&callback=reload_page" alt="Remove" title="Remove" class="thickbox negative">
+                          <img title="list" alt="list" src="/static/images/iconpack/delete.png">
+                          remove
+                        </a>
+                      </div>  
+                        
+                      <div class="loud span-11 last">
+                        [% val || '-' %]
+                      </div>  
+
+                  [% END ; %]
+                    
+                  [% ELSE ; '-' ; END ; %]
+
+
+                </div>
+
+                <div class="loud span-3 last">
+                    <div class="span-3 row-button">
+                      <a alt="New" title="New" class="thickbox positive" href="/[% item.adm_user2groups_rs.result_source.source_name FILTER lower %]/edit_ajax?height=400&width=750&keepThis=true&TB_iframe=true&callback=reload_page">
+                      <img title="New" alt="New" src="/static/images/iconpack/add.png">
+                      New
+                      </a>
+                    </div>  
+                </div>  
+              </div>
+            </div>
+           
+        
+           
+        
+          
+            <div class='span-20 '>
+              <div class="span-3 clear quiet">oncalls:</div>
+              <div class="span-17 borderBottomlight last">
+                <div class="quiet span-1 clear">[% item.oncalls_rs.count %]</div>
+                <div class="loud span-13 last">
+                  [% IF item.oncalls_rs.count > 0 ; %]
+                
+                  [% FOR val = item.oncalls; %]
+
+                      <div class="span-2 row-button clear">
+                        <a href="/[% item.oncalls_rs.result_source.source_name FILTER lower %]/destroy/[% val.user_id %]?height=100&width=250&keepThis=true&TB_iframe=true&callback=reload_page" alt="Remove" title="Remove" class="thickbox negative">
+                          <img title="list" alt="list" src="/static/images/iconpack/delete.png">
+                          remove
+                        </a>
+                      </div>  
+                        
+                      <div class="loud span-11 last">
+                        [% val || '-' %]
+                      </div>  
+
+                  [% END ; %]
+                    
+                  [% ELSE ; '-' ; END ; %]
+
+
+                </div>
+
+                <div class="loud span-3 last">
+                    <div class="span-3 row-button">
+                      <a alt="New" title="New" class="thickbox positive" href="/[% item.oncalls_rs.result_source.source_name FILTER lower %]/edit_ajax?height=400&width=750&keepThis=true&TB_iframe=true&callback=reload_page">
+                      <img title="New" alt="New" src="/static/images/iconpack/add.png">
+                      New
+                      </a>
+                    </div>  
+                </div>  
+              </div>
+            </div>
+           
+        
+           
+        
+          
+            <div class='span-20 '>
+              <div class="span-3 clear quiet">change_requests_approved_by_uid:</div>
+              <div class="span-17 borderBottomlight last">
+                <div class="quiet span-1 clear">[% item.change_requests_approved_by_uid_rs.count %]</div>
+                <div class="loud span-13 last">
+                  [% IF item.change_requests_approved_by_uid_rs.count > 0 ; %]
+                
+                  [% FOR val = item.change_requests_approved_by_uid; %]
+
+                      <div class="span-2 row-button clear">
+                        <a href="/[% item.change_requests_approved_by_uid_rs.result_source.source_name FILTER lower %]/destroy/[% val.user_id %]?height=100&width=250&keepThis=true&TB_iframe=true&callback=reload_page" alt="Remove" title="Remove" class="thickbox negative">
+                          <img title="list" alt="list" src="/static/images/iconpack/delete.png">
+                          remove
+                        </a>
+                      </div>  
+                        
+                      <div class="loud span-11 last">
+                        [% val || '-' %]
+                      </div>  
+
+                  [% END ; %]
+                    
+                  [% ELSE ; '-' ; END ; %]
+
+
+                </div>
+
+                <div class="loud span-3 last">
+                    <div class="span-3 row-button">
+                      <a alt="New" title="New" class="thickbox positive" href="/[% item.change_requests_approved_by_uid_rs.result_source.source_name FILTER lower %]/edit_ajax?height=400&width=750&keepThis=true&TB_iframe=true&callback=reload_page">
+                      <img title="New" alt="New" src="/static/images/iconpack/add.png">
+                      New
+                      </a>
+                    </div>  
+                </div>  
+              </div>
+            </div>
+           
+        
+          
+            <div class='span-20 '>
+              <div class="span-3 clear quiet">change_requests_raised_by_uid:</div>
+              <div class="span-17 borderBottomlight last">
+                <div class="quiet span-1 clear">[% item.change_requests_raised_by_uid_rs.count %]</div>
+                <div class="loud span-13 last">
+                  [% IF item.change_requests_raised_by_uid_rs.count > 0 ; %]
+                
+                  [% FOR val = item.change_requests_raised_by_uid; %]
+
+                      <div class="span-2 row-button clear">
+                        <a href="/[% item.change_requests_raised_by_uid_rs.result_source.source_name FILTER lower %]/destroy/[% val.user_id %]?height=100&width=250&keepThis=true&TB_iframe=true&callback=reload_page" alt="Remove" title="Remove" class="thickbox negative">
+                          <img title="list" alt="list" src="/static/images/iconpack/delete.png">
+                          remove
+                        </a>
+                      </div>  
+                        
+                      <div class="loud span-11 last">
+                        [% val || '-' %]
+                      </div>  
+
+                  [% END ; %]
+                    
+                  [% ELSE ; '-' ; END ; %]
+
+
+                </div>
+
+                <div class="loud span-3 last">
+                    <div class="span-3 row-button">
+                      <a alt="New" title="New" class="thickbox positive" href="/[% item.change_requests_raised_by_uid_rs.result_source.source_name FILTER lower %]/edit_ajax?height=400&width=750&keepThis=true&TB_iframe=true&callback=reload_page">
+                      <img title="New" alt="New" src="/static/images/iconpack/add.png">
+                      New
+                      </a>
+                    </div>  
+                </div>  
+              </div>
+            </div>
+           
+        
+           
+        
+           
+        
+           
+         
+    </div> 
+  </div>
+<script>
+    function reload_page() {
+      window.location.reload();
+      }
+</script>
+

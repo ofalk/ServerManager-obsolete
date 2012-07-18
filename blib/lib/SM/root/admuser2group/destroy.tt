@@ -1,0 +1,11 @@
+
+
+  <div class="span-13 last">
+    <div class="span-13 viewTitleBorders">
+      <h1 class='loud'>[% page_html.title || item %]</h1>
+    </div>
+    <div class="span-13">
+      [% destroywidget %]
+    </div>
+  </div>
+

@@ -1,0 +1,367 @@
+*
+{
+	margin : 0 auto;
+	padding: 0 auto;
+	outline: none;
+
+}
+
+img, fieldset, button, li, a, a:hover
+{
+	border		   : none;
+	list-style	   : none;
+	text-decoration: none;
+
+}
+
+textarea
+{
+	resize: none;
+
+}
+
+input[type="text"],
+input[type="password"]
+{
+	height: 19px;
+	border: 1px solid #cccccc;
+
+}
+
+input[type="radio"],
+input[type="checkbox"]
+{
+	cursor: pointer;
+
+}
+
+input.input_size
+{
+	width: 279px;
+
+}
+
+@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0)
+{
+	head~body .input_size
+	{
+		width: 277px;
+
+	}
+
+}
+
+body
+{
+	color      : #000000;
+	font-size  : 11px;
+	background : #ffffff url(./../images/bg.jpg) repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#geral
+{
+	width : 1024px;
+	margin: 0 auto;
+
+}
+
+#geral  #topo
+{
+	width : 100%;
+	height: 70px;
+
+}
+
+#geral  #topo .logo
+{
+	float      : left;
+	width      : 195px;
+	height     : 70px;
+	background : transparent url(./../images/bgLogo.jpg) no-repeat;
+	margin-left: 50px;
+
+}
+
+#geral  #topo .logo img
+{
+	width		: 140px;
+	padding-top : 6px;
+	padding-left: 23px;
+
+}
+
+#geral  #topo .logout
+{
+	float	   : right;
+	color	   : #FFF;
+	width	   : 160px;
+	font-size  : 14px;
+	text-align : right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	padding-top: 10px;
+
+}
+
+#geral  #topo .logout a
+{
+	float	     : right;
+	color	     : #333;
+	font-size    : 11px;
+	font-weight  : normal;
+	font-family  : Arial, Helvetica, sans-serif;
+	padding-right: 5px;
+
+}
+
+#geral #menu
+{
+	float: left;
+	width: 250px;
+
+}
+
+#geral #menu ul
+{
+	width : 165px;
+	margin: 40px 0 45px 15px;
+
+}
+
+#geral #menu ul li
+{
+	margin: 0 0 4px 0;
+
+}
+
+#geral #menu a
+{
+	color	   		: #FFF;
+	display   		: block;
+	padding    		: 5px 0 4px 10px;
+	font-size  		: 12px;
+	background-color: #0D6B5B;
+
+}
+
+#geral #menu a:hover
+{
+	background-color: #1DB18F;
+
+}
+
+#geral #menu .aux_ui_links a
+{
+	color			: #000000;
+	background-color: transparent;
+
+}
+
+#geral #info-access
+{
+	float        : left;
+	clear	     : both;
+	width        : 250px;
+	height       : 152px;
+	background   : transparent url(./../images/infoUser.png) no-repeat;
+	margin-bottom: 50px;
+
+}
+
+#geral #info-access h3
+{
+	width		 : 70%;
+	margin		 : 0 0 0 36px;
+	padding		 : 20px 0 12px 0;
+	font-size	 : 12px;
+	text-align   : center;
+	font-weight	 : normal;
+	border-bottom: 1px solid #000000;
+
+}
+
+
+#geral #info-access p
+{
+	padding: 12px 0 0 35px;
+
+}
+
+#geral #grid
+{
+	width	  : 586px;
+	margin    : 40px 0 40px 300px;
+	padding	  : 36px 0 0 0;
+	min-height: 320px;
+	background: #ffffff;
+
+}
+
+#geral #grid h2
+{
+	color 	  : #ffffff;
+	width 	  : 490px;
+	padding	  : 22px 12px 18px 12px;
+	background: #666666;
+
+}
+
+#geral #grid .btns,
+#geral #grid .btns a
+{
+	color	 : #ffffff;
+	font-size: 10px;
+
+}
+
+#geral #grid ul.grid
+{
+	margin-left: -39px;
+
+}
+
+#geral #grid ul.grid li
+{
+	color 	  : #000000;
+	width 	  : 490px;
+	padding	  : 12px;
+	margin-top: 8px;
+	background: #cccccc;
+
+}
+
+#geral #grid .form
+{
+	margin : 40px 0 62px 38px;
+	display: none;
+
+}
+
+#geral #grid  .form input.send
+{
+	color	    		 : #ffffff;
+	border				 : none 0;
+	cursor				 : pointer;
+	display	    		 : inline-block;
+	padding				 : 10px 10px 10px 10px;
+	font-size   	  	 : 10px;
+	background  		 : #4c8e0e;
+	font-weight 		 : bold;
+	margin-right		 : 5px;
+	
+	border-radius		 : 2px;
+	-moz-border-radius	 : 2px;
+	-webkit-border-radius: 2px;
+
+}
+
+#geral #grid  .form input.send:hover
+{
+	background: #38690a;
+	
+}
+
+#geral #grid  .form input.clear
+{
+	color	    		 : #ffffff;
+	border				 : none 0;
+	cursor				 : pointer;
+	display	    		 : inline-block;
+	padding				 : 10px 10px 10px 10px;
+	font-size   	  	 : 10px;
+	background  		 : #357AE8;
+	font-weight 		 : bold;
+	margin-right		 : 5px;
+	
+	border-radius		 : 2px;
+	-moz-border-radius	 : 2px;
+	-webkit-border-radius: 2px;
+
+}
+
+#geral #grid  .form input.clear:hover
+{
+	background: #2F5BB7;
+	
+}
+
+#geral #grid  .form fieldset
+{
+	width	   : 262px;
+	border	   : 1px solid #cccccc;
+	margin-left: 1px;
+
+}
+
+#geral #grid  .form fieldset div
+{
+	margin: 4px 0 5px 2px;
+
+}
+
+@-moz-document url-prefix()
+{
+	#geral #grid  .form fieldset
+	{
+		width	   : 264px;
+		border	   : 1px solid #cccccc;
+		margin-left: 1px;
+
+	}
+
+	#geral #grid  .form fieldset div
+	{
+		margin: 8px 0 4px 5px;
+
+	}
+
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{
+	#geral #grid  .form fieldset
+	{
+		width	   : 261px;
+		border	   : 1px solid #cccccc;
+		margin-left: 1px;
+
+	}
+
+	#geral #grid  .form fieldset div
+	{
+		margin: 8px 0 7px 4px;
+
+	}
+
+}
+
+#geral #grid  .form .buttons
+{
+	float : right;
+	margin: -15px 32px 0 0;
+
+}
+
+#rodape
+{
+	color	   : #ffffff;
+	clear	   : both;
+	width	   : 100%;
+	height	   : 20px;
+	bottom	   : 0;
+	position   : fixed;
+	font-size  : 11px;
+	text-align : center;
+	margin-top : 10px;
+	background : transparent url(./../images/rodape.gif) repeat-x center top;
+	line-height: 20px;
+
+}
+
+#rodape a
+{
+	color: #fff;
+
+}

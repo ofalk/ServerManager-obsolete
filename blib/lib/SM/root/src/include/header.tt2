@@ -1,0 +1,28 @@
+<div class="busca-topo span-24">
+  <div class="span-9">
+    YOURLOGO
+  </div>
+  <div class="span-15 last">
+    <form method="GET" action="/control-panel/busca">
+      <div class="span-2 paddingTop5">
+        <label>Search: </label>
+      </div>
+      <div class="span-5">
+        <input id="busca_term" name="busca_term" type="text" value="[% search_val %]"/>
+      </div>
+      <div class="span-1 paddingTop5">
+        <label> on </label>
+      </div>
+      <div class="span-4">
+        <select id="busca_por" name="busca_por" class="marginTop10">
+          <option value="client_name">Name</option>
+        </select>
+      </div>
+      <div class="span-2 last paddingTop10">
+        <input type="submit" value="Search"/>
+      </div>
+    </form>
+  </div>
+</div>
+
+

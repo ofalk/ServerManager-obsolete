@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>[% page_html.title %]</title>
+    [% PROCESS 'src/include/common_htmlhead.tt' %]
+</head>
+<body>
+    <div class='container'>
+
+    [% IF (
+         c.flash.message != ''
+      || c.flash.error != ''
+      )  %]
+
+    <script>                                                                                                           
+    $(document).ready(function () {                                                                                    
+      tb_show('Aviso', '#TB_inline?height=200&width=400&inlineId=flash-messages', false);
+    });
+    </script>
+    <div id="flash-messages" style="display:none;">                                                                    
+      [% IF c.flash.message != '' %]<span class="success-msg">[% c.flash.message %]
+      </span>[% END %]                                                                                                       
+      [% IF c.flash.error != '' %]<span class="error-msg">[% c.flash.error  %]</span>[% END %]           
+    </div>          
+
+    [% END %]
+
+
+    <div class='span-24'>
+        [% INCLUDE 'src/include/header.tt2' %]
+        [% content %]
+        [% INCLUDE 'src/include/footer.tt2' %]
+    </div>
+
+    </div>
+</body>
+</html>
+

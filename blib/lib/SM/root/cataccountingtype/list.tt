@@ -1,0 +1,142 @@
+
+  <div class="span-4">
+    [% PROCESS 'src/include/left_menu.tt2' %]
+  </div>
+  <div class="span-20 top-options last">
+    <div class="span-17 last">  
+    <a href="[% c.uri_for( 'edit') %]" title="new" class="positive button">
+      <img src='/static/images/iconpack/add.png' alt=''></img>
+     New 
+      </a>  
+
+        <a class="button negative" href="javascript: void(0)" onclick="show_confirm()">
+          <img src='/static/images/iconpack/cross.png' alt=''></img>
+          remove
+        </a>
+        <script type="text/javascript">
+        function show_confirm()
+        {
+          var r=confirm("Confirm?");
+          if (r==true)
+          {
+            $('#gridform').attr('action', '[% c.uri_for('destroy_multiple') %]'); document.gridform.submit();
+          }
+          else
+          {
+          }
+        }
+        </script>
+    </div>
+    <div class="span-3 last">  
+       <input type="checkbox" id="select-all-checkbox" value="All"></input> All
+       <script>
+         $('#select-all-checkbox').click(function () { 
+           var cheked_status= this.checked;
+           $('[name=select-multiple]').each( function () {
+             this.checked = cheked_status;
+             });
+           });
+       </script>
+    </div>
+  </div>
+
+
+  <div class="span-20 last">
+    <div class="span-20 last">
+      [% PROCESS pager.tt %]
+    </div>
+    <div class="span-20 last viewTitleBorders">
+      <h1 class='loud'>[% page_html.title || item %]</h1>
+    </div>
+    <table class="span-20">
+    <thead class="table-head">
+      <tr>
+        <th class="select-cell" colspan="2">
+          <div class="span-20">  
+              
+                  [% order_by_column_link('accounting_type_id', 'Accounting Type Id') %]
+                
+              
+                  [% order_by_column_link('name', 'Name') %]
+                
+               
+           </div>
+        </th>
+      </tr>
+    </thead>
+    <form method="post" id="gridform" name="gridform">
+      <tbody>
+    [% SET i = 1; WHILE (row = result.next) ; i = i + 1%]
+        <tr class='[% IF i mod 2 %]bg_tr[% END %]'>
+        <td class="trBorders">
+        <div class='span-17 last'>
+          <div class='span-2 clear'><img src="/static/images/no_image.gif" width="70" height="70"></img></div>
+          <div class='span-15 last'>
+          
+             <div class='span-15 '>
+                <div class="span-3 clear quiet">accounting_type_id:</div>
+                <div class="span-12 last loud">
+                    
+                    [%  row.accounting_type_id %]
+                    
+                </div>
+              </div>
+        
+             <div class='span-15 '>
+                <div class="span-3 clear quiet">name:</div>
+                <div class="span-12 last loud">
+                    
+                    [%  row.name %]
+                    
+                </div>
+              </div>
+         
+
+
+          </div>  
+          </div>
+        [% SET id = row.$pri %]
+            <div class='span-3 last'>
+
+              <div class='span-3 row-button'>
+                <input name="select-multiple" type="checkbox" value="[% row.accounting_type_id %]"></input> Select
+              </div>
+
+              <div class='span-3 row-button'>
+                <a class="positive" href="[% c.uri_for_action( '/cataccountingtype/view', [], row.accounting_type_id,  ) %]">
+                  <img src='/static/images/iconpack/application_go.png' alt=''></img>
+                  view 
+                </a>
+              </div>
+
+              <div class='span-3 row-button'>
+              <a href="[% c.uri_for_action( '/cataccountingtype/edit', [], row.accounting_type_id,  ) %]">
+                <img src='/static/images/iconpack/application_form_edit.png' alt=''></img>
+                edit
+              </a>
+              </div>
+
+              <div class='span-3 row-button'>
+              <a class="thickbox negative" href="[% c.uri_for_action( '/cataccountingtype/destroy', [], row.accounting_type_id,  , { height => 100, width => 215 , keepThis => 'true' , TB_iframe => 'true' , callback => 'reload_page', }) %]">
+                <img src='/static/images/iconpack/delete.png' alt=''></img>
+                remove
+              </a>
+              </div>
+
+            </div>
+        </td>
+
+        </tr>
+    [% END %]
+      </tbody>
+    </form>
+    </table>
+[% PROCESS pager.tt %]
+</div>
+<script>
+    function reload_page() {
+      window.location.reload();
+      }
+</script>
+
+

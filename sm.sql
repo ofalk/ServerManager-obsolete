@@ -1,0 +1,684 @@
+-- MySQL dump 10.13  Distrib 5.1.61, for redhat-linux-gnu (x86_64)
+--
+-- Host: mysql01.beer.linux-kernel.at    Database: srvmanager
+-- ------------------------------------------------------
+-- Server version	5.5.27-28.1-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `ADM_DEPARTMENT`
+--
+
+DROP TABLE IF EXISTS `ADM_DEPARTMENT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ADM_DEPARTMENT` (
+  `DEPARTMENT_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  `DESCRIPTION` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`DEPARTMENT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ADM_GROUP`
+--
+
+DROP TABLE IF EXISTS `ADM_GROUP`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ADM_GROUP` (
+  `ADM_GROUP_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  `DESCRIPTION` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`ADM_GROUP_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ADM_ROLE`
+--
+
+DROP TABLE IF EXISTS `ADM_ROLE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ADM_ROLE` (
+  `ROLE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  `DESCRIPTION` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ROLE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ADM_USER`
+--
+
+DROP TABLE IF EXISTS `ADM_USER`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ADM_USER` (
+  `USER_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ADM_DEPARTMENT_ID` int(10) unsigned NOT NULL,
+  `ADM_ROLE_ID` int(10) unsigned NOT NULL,
+  `X_KEY` varchar(45) DEFAULT NULL,
+  `FULL_NAME` varchar(50) NOT NULL,
+  `MAIL_ADDRESS` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`),
+  KEY `FK_DEPARTMENT` (`ADM_DEPARTMENT_ID`),
+  KEY `FK_ROLE` (`ADM_ROLE_ID`),
+  CONSTRAINT `FK_DEPARTMENT` FOREIGN KEY (`ADM_DEPARTMENT_ID`) REFERENCES `ADM_DEPARTMENT` (`DEPARTMENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ROLE` FOREIGN KEY (`ADM_ROLE_ID`) REFERENCES `ADM_ROLE` (`ROLE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ADM_USER2GROUP`
+--
+
+DROP TABLE IF EXISTS `ADM_USER2GROUP`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ADM_USER2GROUP` (
+  `USER_ID` int(10) unsigned NOT NULL,
+  `GROUP_ID` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`USER_ID`,`GROUP_ID`),
+  KEY `FK_USER_ID` (`USER_ID`),
+  KEY `FK_GROUP_ID` (`GROUP_ID`),
+  CONSTRAINT `FK_GROUP_ID` FOREIGN KEY (`GROUP_ID`) REFERENCES `ADM_GROUP` (`ADM_GROUP_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_USER_ID` FOREIGN KEY (`USER_ID`) REFERENCES `ADM_USER` (`USER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_ACCOUNTING_TYPE`
+--
+
+DROP TABLE IF EXISTS `CAT_ACCOUNTING_TYPE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_ACCOUNTING_TYPE` (
+  `ACCOUNTING_TYPE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`ACCOUNTING_TYPE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_ASP`
+--
+
+DROP TABLE IF EXISTS `CAT_ASP`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_ASP` (
+  `ASP_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(100) DEFAULT NULL,
+  `SERVICE_MANAGER` varchar(45) DEFAULT NULL,
+  `PSP_ELEMENT` varchar(45) DEFAULT NULL,
+  `SLA_LEVEL` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`ASP_ID`),
+  UNIQUE KEY `NAME` (`NAME`),
+  UNIQUE KEY `CAT_ASP_NAME_IDX` (`NAME`)
+) ENGINE=InnoDB AUTO_INCREMENT=6072 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_BOOL`
+--
+
+DROP TABLE IF EXISTS `CAT_BOOL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_BOOL` (
+  `BOOL_ID` int(10) unsigned NOT NULL,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`BOOL_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_CLUSTER_SOFTWARE`
+--
+
+DROP TABLE IF EXISTS `CAT_CLUSTER_SOFTWARE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_CLUSTER_SOFTWARE` (
+  `CLUSTER_SOFTWARE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`CLUSTER_SOFTWARE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_CPU_TYPE`
+--
+
+DROP TABLE IF EXISTS `CAT_CPU_TYPE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_CPU_TYPE` (
+  `CPU_TYPE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`CPU_TYPE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_DOMAIN`
+--
+
+DROP TABLE IF EXISTS `CAT_DOMAIN`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_DOMAIN` (
+  `DOMAIN_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`DOMAIN_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_LOCATION`
+--
+
+DROP TABLE IF EXISTS `CAT_LOCATION`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_LOCATION` (
+  `LOCATION_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  `SHORT_NAME` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`LOCATION_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_OS_ARCHITECTURE`
+--
+
+DROP TABLE IF EXISTS `CAT_OS_ARCHITECTURE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_OS_ARCHITECTURE` (
+  `OS_ARCHITECTURE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`OS_ARCHITECTURE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_OS_CATEGORY`
+--
+
+DROP TABLE IF EXISTS `CAT_OS_CATEGORY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_OS_CATEGORY` (
+  `OS_CATEGORY_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`OS_CATEGORY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_OS_VERSION`
+--
+
+DROP TABLE IF EXISTS `CAT_OS_VERSION`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_OS_VERSION` (
+  `OS_VERSION_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`OS_VERSION_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_PATCHTIME`
+--
+
+DROP TABLE IF EXISTS `CAT_PATCHTIME`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_PATCHTIME` (
+  `PATCHTIME_ID` int(10) unsigned NOT NULL,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`PATCHTIME_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_PRODUCT_CATEGORY`
+--
+
+DROP TABLE IF EXISTS `CAT_PRODUCT_CATEGORY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_PRODUCT_CATEGORY` (
+  `PRODUCT_CATEGORY_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  `DESCRIPTION` varchar(45) DEFAULT NULL,
+  `COSTS` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`PRODUCT_CATEGORY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_SERVER_MODEL`
+--
+
+DROP TABLE IF EXISTS `CAT_SERVER_MODEL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_SERVER_MODEL` (
+  `SERVER_MODEL_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `CAT_VENDOR_ID` int(10) unsigned NOT NULL,
+  `CAT_CPU_TYPE_ID` int(10) unsigned NOT NULL,
+  `NAME` varchar(45) NOT NULL,
+  `CPU_SOCKETS` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`SERVER_MODEL_ID`),
+  KEY `FK_VENDOR` (`CAT_VENDOR_ID`),
+  KEY `FK_CAT_CPU_TYPE` (`CAT_CPU_TYPE_ID`),
+  CONSTRAINT `FK_CAT_CPU_TYPE` FOREIGN KEY (`CAT_CPU_TYPE_ID`) REFERENCES `CAT_CPU_TYPE` (`CPU_TYPE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_VENDOR` FOREIGN KEY (`CAT_VENDOR_ID`) REFERENCES `CAT_VENDOR` (`VENDOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_SITE`
+--
+
+DROP TABLE IF EXISTS `CAT_SITE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_SITE` (
+  `SITE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  `SHORT_NAME` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`SITE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_STATUS`
+--
+
+DROP TABLE IF EXISTS `CAT_STATUS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_STATUS` (
+  `STATUS_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`STATUS_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_STORAGE_MODEL`
+--
+
+DROP TABLE IF EXISTS `CAT_STORAGE_MODEL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_STORAGE_MODEL` (
+  `STORAGE_MODEL_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `CAT_VENDOR_ID` int(10) unsigned NOT NULL,
+  `NAME` varchar(45) NOT NULL,
+  PRIMARY KEY (`STORAGE_MODEL_ID`),
+  KEY `FK_STOR_VENDOR` (`CAT_VENDOR_ID`),
+  CONSTRAINT `FK_STOR_VENDOR` FOREIGN KEY (`CAT_VENDOR_ID`) REFERENCES `CAT_VENDOR` (`VENDOR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_SUPPORT_LEVEL`
+--
+
+DROP TABLE IF EXISTS `CAT_SUPPORT_LEVEL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_SUPPORT_LEVEL` (
+  `SUPPORT_LEVEL_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `LEVEL_NR` varchar(45) NOT NULL,
+  `DESCRIPTION` varchar(45) NOT NULL,
+  `NAME` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`SUPPORT_LEVEL_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CAT_VENDOR`
+--
+
+DROP TABLE IF EXISTS `CAT_VENDOR`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAT_VENDOR` (
+  `VENDOR_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  `CONTACT_PERSON` varchar(45) DEFAULT NULL,
+  `CONTACT_PHONE` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`VENDOR_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CHANGE_REQUEST`
+--
+
+DROP TABLE IF EXISTS `CHANGE_REQUEST`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CHANGE_REQUEST` (
+  `CHANGE_REQUEST_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `RAISED_BY_UID` int(10) unsigned NOT NULL,
+  `APPROVED_BY_UID` int(10) unsigned NOT NULL,
+  `REASON_FOR_CHANGE` varchar(45) NOT NULL,
+  `IMPLEMENTED_BY` int(10) unsigned NOT NULL,
+  `START_DATE` datetime NOT NULL,
+  `STOP_TIME` datetime NOT NULL,
+  `USERS_TO_INFORM` varchar(45) DEFAULT NULL,
+  `IMPACT_ON` varchar(45) DEFAULT NULL,
+  `RISKS` varchar(45) DEFAULT NULL,
+  `CHANGE_SHORT` varchar(45) NOT NULL,
+  `CHANGE_LONG` text,
+  `STATUS` int(11) NOT NULL,
+  `REQUESTED_BY` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`CHANGE_REQUEST_ID`),
+  KEY `FK_APPROVED_BY_ID` (`APPROVED_BY_UID`),
+  KEY `FK_RAISED_BY` (`RAISED_BY_UID`),
+  CONSTRAINT `FK_APPROVED_BY_ID` FOREIGN KEY (`APPROVED_BY_UID`) REFERENCES `ADM_USER` (`USER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_RAISED_BY` FOREIGN KEY (`RAISED_BY_UID`) REFERENCES `ADM_USER` (`USER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CLUSTER`
+--
+
+DROP TABLE IF EXISTS `CLUSTER`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CLUSTER` (
+  `CLUSTER_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `CAT_CLUSTER_SOFTWARE_ID` int(10) unsigned NOT NULL,
+  `SOFTWARE_VERSION` varchar(45) DEFAULT NULL,
+  `DESCRIPTION` varchar(45) DEFAULT NULL,
+  `NAME` varchar(45) NOT NULL,
+  `CAT_STATUS_ID` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`CLUSTER_ID`),
+  KEY `FK_CLUSER_SOFTWARE` (`CAT_CLUSTER_SOFTWARE_ID`),
+  KEY `FK_STATUS_CLUSTER` (`CAT_STATUS_ID`),
+  CONSTRAINT `FK_STATUS_CLUSTER` FOREIGN KEY (`CAT_STATUS_ID`) REFERENCES `CAT_STATUS` (`STATUS_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_CLUSER_SOFTWARE` FOREIGN KEY (`CAT_CLUSTER_SOFTWARE_ID`) REFERENCES `CAT_CLUSTER_SOFTWARE` (`CLUSTER_SOFTWARE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CLUSTER_PACKAGE`
+--
+
+DROP TABLE IF EXISTS `CLUSTER_PACKAGE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CLUSTER_PACKAGE` (
+  `CLUSTER_PACKAGE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `CLUSTER_ID` int(10) unsigned NOT NULL,
+  `CAT_ASP_ID` int(10) unsigned NOT NULL,
+  `NAME` varchar(45) NOT NULL,
+  `DESCRIPTION` varchar(100) DEFAULT NULL,
+  `CAT_STATUS_ID` int(10) unsigned NOT NULL,
+  `IP_ADDRESS` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`CLUSTER_PACKAGE_ID`),
+  KEY `FK_CP_CLUSTER` (`CLUSTER_ID`),
+  KEY `FK_CP_ASP` (`CAT_ASP_ID`),
+  KEY `FK_STATUS_CLUSTER_PACKAGE` (`CAT_STATUS_ID`),
+  CONSTRAINT `FK_CP_ASP` FOREIGN KEY (`CAT_ASP_ID`) REFERENCES `CAT_ASP` (`ASP_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_CP_CLUSTER` FOREIGN KEY (`CLUSTER_ID`) REFERENCES `CLUSTER` (`CLUSTER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_STATUS_CLUSTER_PACKAGE` FOREIGN KEY (`CAT_STATUS_ID`) REFERENCES `CAT_STATUS` (`STATUS_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=282 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `LNXGROUP`
+--
+
+DROP TABLE IF EXISTS `LNXGROUP`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LNXGROUP` (
+  `GROUP_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `GID` int(11) NOT NULL,
+  `NAME` varchar(45) DEFAULT NULL,
+  `DESCRIPTION` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`GROUP_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `LNXUSER`
+--
+
+DROP TABLE IF EXISTS `LNXUSER`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LNXUSER` (
+  `USER_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `UID` int(11) NOT NULL,
+  `NAME` varchar(45) DEFAULT NULL,
+  `GID` int(10) unsigned DEFAULT NULL,
+  `ADDITIONAL_GROUPS` varchar(45) DEFAULT NULL,
+  `HOMEDIR` varchar(45) DEFAULT NULL,
+  `DESCRIPTION` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`),
+  UNIQUE KEY `USER_ID_UNIQUE` (`USER_ID`),
+  UNIQUE KEY `NAME_UNIQUE` (`NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `LUN`
+--
+
+DROP TABLE IF EXISTS `LUN`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LUN` (
+  `LUN_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `STORAGE_ID` int(10) unsigned NOT NULL,
+  `CLUSTER_PACKAGE_ID` int(10) unsigned NOT NULL,
+  `SERVER_ID` int(10) unsigned NOT NULL,
+  `CAT_OS_CATEGORY_ID` int(10) unsigned NOT NULL,
+  `CAT_PRODUCT_CATEGORY_ID` int(10) unsigned NOT NULL,
+  `NAME` varchar(45) NOT NULL,
+  `MIRRORED_ON_STORAGE` tinyint(1) NOT NULL,
+  `SIZE_IN_GB` int(10) unsigned NOT NULL,
+  `DESCRIPTION` varchar(80) DEFAULT NULL,
+  `VOLUME_GROUP` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`LUN_ID`),
+  KEY `FK_STORAGE` (`STORAGE_ID`),
+  KEY `FK_LUN_SERVER` (`SERVER_ID`),
+  KEY `FK_LUN_CLUSTER_PACKAGE` (`CLUSTER_PACKAGE_ID`),
+  KEY `FK_LUN_OS_CATEGORY` (`CAT_OS_CATEGORY_ID`),
+  KEY `FK_LUN_PRODUCT_CATEGORY` (`CAT_PRODUCT_CATEGORY_ID`),
+  CONSTRAINT `FK_LUN_CLUSTER_PACKAGE` FOREIGN KEY (`CLUSTER_PACKAGE_ID`) REFERENCES `CLUSTER_PACKAGE` (`CLUSTER_PACKAGE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_LUN_OS_CATEGORY` FOREIGN KEY (`CAT_OS_CATEGORY_ID`) REFERENCES `CAT_OS_CATEGORY` (`OS_CATEGORY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_LUN_PRODUCT_CATEGORY` FOREIGN KEY (`CAT_PRODUCT_CATEGORY_ID`) REFERENCES `CAT_PRODUCT_CATEGORY` (`PRODUCT_CATEGORY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_LUN_SERVER` FOREIGN KEY (`SERVER_ID`) REFERENCES `SERVER` (`SERVER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_STORAGE` FOREIGN KEY (`STORAGE_ID`) REFERENCES `STORAGE` (`STORAGE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `ONCALL`
+--
+
+DROP TABLE IF EXISTS `ONCALL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ONCALL` (
+  `ONCALL_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ADM_USER_ID` int(10) unsigned NOT NULL,
+  `ADM_DEPARTMENT_ID` int(10) unsigned NOT NULL,
+  `PROBLEM_DESCRIPTION` varchar(80) NOT NULL,
+  `START_DATE` datetime DEFAULT NULL,
+  `STOP_DATE` datetime DEFAULT NULL,
+  `PROBLEM_DETAILS` text,
+  PRIMARY KEY (`ONCALL_ID`),
+  KEY `FK_ONCALL_USER` (`ADM_USER_ID`),
+  KEY `FK_ONCALL_DEPARTMENT` (`ADM_DEPARTMENT_ID`),
+  CONSTRAINT `FK_ONCALL_DEPARTMENT` FOREIGN KEY (`ADM_DEPARTMENT_ID`) REFERENCES `ADM_DEPARTMENT` (`DEPARTMENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ONCALL_USER` FOREIGN KEY (`ADM_USER_ID`) REFERENCES `ADM_USER` (`USER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OPERATOR_GROUP`
+--
+
+DROP TABLE IF EXISTS `OPERATOR_GROUP`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OPERATOR_GROUP` (
+  `OPERATOR_GROUP_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(45) NOT NULL,
+  `DESCRIPTION` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`OPERATOR_GROUP_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `SERVER`
+--
+
+DROP TABLE IF EXISTS `SERVER`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SERVER` (
+  `SERVER_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `CAT_SITE_ID` int(10) unsigned NOT NULL,
+  `CAT_ASP_ID` int(10) unsigned NOT NULL,
+  `CAT_SERVER_MODEL_ID` int(10) unsigned NOT NULL,
+  `CAT_OS_CATEGORY_ID` int(10) unsigned NOT NULL,
+  `CAT_OS_VERSION_ID` int(10) unsigned NOT NULL,
+  `CAT_STATUS_ID` int(10) unsigned NOT NULL,
+  `CAT_PRODUCT_CATEGORY_ID` int(10) unsigned NOT NULL,
+  `CAT_ACCOUNTING_TYPE_ID` int(10) unsigned DEFAULT NULL,
+  `CAT_LOCATION_ID` int(10) unsigned NOT NULL,
+  `CAT_DOMAIN_ID` int(10) unsigned NOT NULL,
+  `CAT_SUPPORT_LEVEL_ID` int(10) unsigned NOT NULL,
+  `CAT_OS_ARCHITECTURE_ID` int(10) unsigned NOT NULL,
+  `CLUSTER_ID` int(10) unsigned DEFAULT NULL,
+  `HOSTNAME` varchar(45) NOT NULL,
+  `DELIVERY_DATE` date DEFAULT '1980-11-17',
+  `DOCUMENTATION_URL` varchar(100) DEFAULT NULL,
+  `MEMORY_IN_MB` int(10) unsigned DEFAULT NULL,
+  `PHYSICAL_CPUS` int(10) unsigned DEFAULT NULL,
+  `CORES_PER_CPU` int(10) unsigned DEFAULT NULL,
+  `CPU_SPEED` int(10) unsigned DEFAULT NULL,
+  `APPLICATION` varchar(100) DEFAULT NULL,
+  `RACK` varchar(45) DEFAULT NULL,
+  `IP_ADDRESS` varchar(45) DEFAULT NULL,
+  `SUBNET_MASK` varchar(45) DEFAULT NULL,
+  `DEFAULT_GATEWAY` varchar(45) DEFAULT NULL,
+  `ADDITIONAL_IP` text,
+  `MANAGEMENT_IP` varchar(45) DEFAULT NULL,
+  `MANAGEMENT_HOSTNAME` varchar(45) DEFAULT NULL,
+  `DELIVERY_NOTE_ID` varchar(45) DEFAULT NULL,
+  `SERIAL_NR` varchar(45) DEFAULT NULL,
+  `FC_ATTACHED` tinyint(1) DEFAULT NULL,
+  `MAINTENANCE_END` date DEFAULT '1980-11-17',
+  `DESCRIPTION` varchar(100) DEFAULT NULL,
+  `ISCSI_ATTACHED` tinyint(1) DEFAULT NULL,
+  `AUTODISCOVERY` tinyint(1) DEFAULT NULL,
+  `OPERATOR_GROUP_ID` int(10) unsigned NOT NULL,
+  `REBOOT_NOTES` text,
+  `PATCH_NOTES` text,
+  `PATCHTIME` int(10) unsigned NOT NULL,
+  `ASSET_ID` varchar(45) DEFAULT NULL,
+  `TAGS` varchar(1024) DEFAULT NULL,
+  `LICENSE_END` date DEFAULT '1980-11-17',
+  `LICENSE` varchar(17) DEFAULT NULL,
+  `USES_MULTIPATH` tinyint(4) DEFAULT '1',
+  PRIMARY KEY (`SERVER_ID`),
+  KEY `FK_SITE` (`CAT_SITE_ID`),
+  KEY `FK_ASP` (`CAT_ASP_ID`),
+  KEY `FK_SERVER_MODEL` (`CAT_SERVER_MODEL_ID`),
+  KEY `FK_OS_CATEGORY` (`CAT_OS_CATEGORY_ID`),
+  KEY `FK_OS_VERSION` (`CAT_OS_VERSION_ID`),
+  KEY `FK_STATUS` (`CAT_STATUS_ID`),
+  KEY `FK_PRODUCT_CATEGRORY` (`CAT_PRODUCT_CATEGORY_ID`),
+  KEY `FK_LOCATION` (`CAT_LOCATION_ID`),
+  KEY `FK_DOMAIN` (`CAT_DOMAIN_ID`),
+  KEY `FK_SUPPORT_LEVEL` (`CAT_SUPPORT_LEVEL_ID`),
+  KEY `FK_OS_ARCHITECTURE` (`CAT_OS_ARCHITECTURE_ID`),
+  KEY `FK_CLUSTER` (`CLUSTER_ID`),
+  KEY `IDX_HOSTNAME` (`HOSTNAME`),
+  KEY `IDX_SERVER_ID` (`SERVER_ID`),
+  KEY `FK_OPERATOR_GROUP` (`OPERATOR_GROUP_ID`),
+  KEY `FK_PATCHTIME` (`PATCHTIME`),
+  CONSTRAINT `FK_ASP` FOREIGN KEY (`CAT_ASP_ID`) REFERENCES `CAT_ASP` (`ASP_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_CLUSTER` FOREIGN KEY (`CLUSTER_ID`) REFERENCES `CLUSTER` (`CLUSTER_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_DOMAIN` FOREIGN KEY (`CAT_DOMAIN_ID`) REFERENCES `CAT_DOMAIN` (`DOMAIN_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_LOCATION` FOREIGN KEY (`CAT_LOCATION_ID`) REFERENCES `CAT_LOCATION` (`LOCATION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_OPERATOR_GROUP` FOREIGN KEY (`OPERATOR_GROUP_ID`) REFERENCES `OPERATOR_GROUP` (`OPERATOR_GROUP_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_OS_ARCHITECTURE` FOREIGN KEY (`CAT_OS_ARCHITECTURE_ID`) REFERENCES `CAT_OS_ARCHITECTURE` (`OS_ARCHITECTURE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_OS_CATEGORY` FOREIGN KEY (`CAT_OS_CATEGORY_ID`) REFERENCES `CAT_OS_CATEGORY` (`OS_CATEGORY_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_OS_VERSION` FOREIGN KEY (`CAT_OS_VERSION_ID`) REFERENCES `CAT_OS_VERSION` (`OS_VERSION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_PATCHTIME` FOREIGN KEY (`PATCHTIME`) REFERENCES `CAT_PATCHTIME` (`PATCHTIME_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_PRODUCT_CATEGORY` FOREIGN KEY (`CAT_PRODUCT_CATEGORY_ID`) REFERENCES `CAT_PRODUCT_CATEGORY` (`PRODUCT_CATEGORY_ID`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `FK_SERVER_MODEL` FOREIGN KEY (`CAT_SERVER_MODEL_ID`) REFERENCES `CAT_SERVER_MODEL` (`SERVER_MODEL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_SITE` FOREIGN KEY (`CAT_SITE_ID`) REFERENCES `CAT_SITE` (`SITE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_STATUS` FOREIGN KEY (`CAT_STATUS_ID`) REFERENCES `CAT_STATUS` (`STATUS_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_SUPPORT_LEVEL` FOREIGN KEY (`CAT_SUPPORT_LEVEL_ID`) REFERENCES `CAT_SUPPORT_LEVEL` (`SUPPORT_LEVEL_ID`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `STORAGE`
+--
+
+DROP TABLE IF EXISTS `STORAGE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `STORAGE` (
+  `STORAGE_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `CAT_STORAGE_MODEL_ID` int(10) unsigned NOT NULL,
+  `CAT_SITE_ID` int(10) unsigned NOT NULL,
+  `CAT_LOCATION_ID` int(10) unsigned NOT NULL,
+  `NAME` varchar(45) NOT NULL,
+  `IP_ADDR_1` varchar(45) DEFAULT NULL,
+  `IP_ADDR_2` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`STORAGE_ID`),
+  KEY `FK_STORAGE_MODEL` (`CAT_STORAGE_MODEL_ID`),
+  KEY `FK_STORAGE_SITE` (`CAT_SITE_ID`),
+  KEY `FK_STORAGE_LOCATION` (`CAT_LOCATION_ID`),
+  CONSTRAINT `FK_STORAGE_LOCATION` FOREIGN KEY (`CAT_LOCATION_ID`) REFERENCES `CAT_LOCATION` (`LOCATION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_STORAGE_MODEL` FOREIGN KEY (`CAT_STORAGE_MODEL_ID`) REFERENCES `CAT_STORAGE_MODEL` (`STORAGE_MODEL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_STORAGE_SITE` FOREIGN KEY (`CAT_SITE_ID`) REFERENCES `CAT_SITE` (`SITE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2012-09-27 18:39:56

@@ -21,15 +21,17 @@
       <div class="span-20 last viewTitleBorders">
         <h1 class='loud'>[% page_html.title || item %]</h1>
       </div>
+<!-- No support for images at the moment
       <div class='span-3 clear'>
         <img src="/static/images/no_image.gif" width="70" height="70"></img>
       </div>
+-->
       <div class="span-17 last">
         
           
             <div class='span-17 borderBottomlight'>
                 <div class="quiet span-3 clear">
-                  Cat Storage Model:
+                  Storage Model:
                 </div>  
                 <div class="loud span-14 last">
                   
@@ -44,7 +46,7 @@
           
             <div class='span-17 borderBottomlight'>
                 <div class="quiet span-3 clear">
-                  Cat Location:
+                  Location:
                 </div>  
                 <div class="loud span-14 last">
                   
@@ -57,7 +59,7 @@
           
             <div class='span-17 borderBottomlight'>
                 <div class="quiet span-3 clear">
-                  Cat Site:
+                  Site:
                 </div>  
                 <div class="loud span-14 last">
                   
@@ -78,7 +80,28 @@
                   
                 </div>  
             </div>  
-          
+
+            <div class='span-17 borderBottomlight'>
+                <div class="quiet span-3 clear">
+                  IP Address 1:
+                </div>  
+                <div class="loud span-14 last">
+                  
+                  [%  item.ip_addr_1 %]
+                  
+                </div>  
+            </div>  
+           
+            <div class='span-17 borderBottomlight'>
+                <div class="quiet span-3 clear">
+                  IP Address 2:
+                </div>  
+                <div class="loud span-14 last">
+                  
+                  [%  item.ip_addr_2 %]
+                  
+                </div>  
+            </div>  
         
       </div>
 

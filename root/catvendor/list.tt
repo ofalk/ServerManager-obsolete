@@ -53,20 +53,10 @@
       <tr>
         <th class="select-cell" colspan="2">
           <div class="span-20">  
-                                cat_server_models
-                
-                                cat_storage_models
-                
-              
+                  Sort by
                   [% order_by_column_link('name', 'Name') %]
-                
-              
                   [% order_by_column_link('contact_person', 'Contact Person') %]
-                
-              
                   [% order_by_column_link('contact_phone', 'Contact Phone') %]
-                
-               
            </div>
         </th>
       </tr>
@@ -77,29 +67,31 @@
         <tr class='[% IF i mod 2 %]bg_tr[% END %]'>
         <td class="trBorders">
         <div class='span-17 last'>
+<!-- No support for images at the moment
           <div class='span-2 clear'><img src="/static/images/no_image.gif" width="70" height="70"></img></div>
+-->
           <div class='span-15 last'>
           
              <div class='span-15 '>
-                <div class="span-3 clear quiet">cat_server_models:</div>
+                <div class="span-3 clear quiet">Server Models:</div>
                 <div class="span-12 last loud">
                     
-                    [% FOR val = row.cat_server_models; val; ', '; END %]
+                    [% FOR val = row.cat_server_models %][% val %][% UNLESS loop.last %], [% END %][% END %]
                     
                 </div>
               </div>
         
              <div class='span-15 '>
-                <div class="span-3 clear quiet">cat_storage_models:</div>
+                <div class="span-3 clear quiet">Storage Models:</div>
                 <div class="span-12 last loud">
                     
-                    [% FOR val = row.cat_storage_models; val; ', '; END %]
+                    [% FOR val = row.cat_storage_models %][% val %][% UNLESS loop.last %], [% END %][% END %]
                     
                 </div>
               </div>
         
              <div class='span-15 '>
-                <div class="span-3 clear quiet">name:</div>
+                <div class="span-3 clear quiet">Name:</div>
                 <div class="span-12 last loud">
                     
                     [%  row.name %]
@@ -108,7 +100,7 @@
               </div>
         
              <div class='span-15 '>
-                <div class="span-3 clear quiet">contact_person:</div>
+                <div class="span-3 clear quiet">Contact person:</div>
                 <div class="span-12 last loud">
                     
                     [%  row.contact_person %]
@@ -117,7 +109,7 @@
               </div>
         
              <div class='span-15 '>
-                <div class="span-3 clear quiet">contact_phone:</div>
+                <div class="span-3 clear quiet">Contact phone:</div>
                 <div class="span-12 last loud">
                     
                     [%  row.contact_phone %]

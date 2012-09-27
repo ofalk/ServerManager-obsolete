@@ -53,17 +53,9 @@
       <tr>
         <th class="select-cell" colspan="2">
           <div class="span-20">  
-                                storages
-                
-                                servers
-                
-              
+                  Sort by
                   [% order_by_column_link('name', 'Name') %]
-                
-              
                   [% order_by_column_link('short_name', 'Short Name') %]
-                
-               
            </div>
         </th>
       </tr>
@@ -74,7 +66,6 @@
         <tr class='[% IF i mod 2 %]bg_tr[% END %]'>
         <td class="trBorders">
         <div class='span-17 last'>
-          <div class='span-2 clear'><img src="/static/images/no_image.gif" width="70" height="70"></img></div>
           <div class='span-15 last'>
           
              <div class='span-15 '>

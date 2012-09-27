@@ -34,6 +34,7 @@ By default all the pages return 404
 
 sub default : Private {
     my ( $self, $c ) = @_;
+
     $c->response->status(404);
     $c->response->body("404 Not Found");
 };
@@ -83,7 +84,15 @@ Attempt to render a view, if needed.
 
 =cut
 
-sub end : ActionClass('RenderView') {}
+sub end : ActionClass('RenderView') {
+    my ( $self, $c ) = @_;
+}
+
+sub auto : Private {
+    my ( $self, $c ) = @_;
+    $c->config->{InstantCRUDStylish}{maxrows} = $c->req->query_parameters->{page_size} || 10;
+}
+
 
 =head1 AUTHOR
 

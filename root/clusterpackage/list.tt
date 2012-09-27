@@ -48,6 +48,63 @@
     <div class="span-20 last viewTitleBorders">
       <h1 class='loud'>[% page_html.title || item %]</h1>
     </div>
+
+    [% IF c.req.param('view_type') == 'lowdetail' %]
+
+    <table cass="span-20">
+        <tr>
+            <th class="select-cell">&nbsp;
+            </th>
+            <th class="select-cell">
+                [% order_by_column_link('name', 'Name') %]
+            </th>
+            [% FOREACH x IN ['Status' 'Description', 'IP Address', 'Cluster Name', 'ASP Name', 'Edit'] %]
+                <th class="select-cell">[% x %]</th>
+            </th>
+            [% END %]
+        </tr>
+    <form method="post" id="gridform" name="gridform">
+      <tbody>
+      [% SET i = 1; WHILE (row = result.next) ; i = i + 1%]
+        <tr class='[% IF i mod 2 %]bg_tr[% END %]'>
+        <td class="trBorders">
+            <input name="select-multiple" type="checkbox" value="[% row.cluster_package_id %]"></input>
+        </td>
+        <td class="trBorders">
+            <a class="positive" href="[% c.uri_for_action( '/clusterpackage/view', [], row.cluster_package_id,  ) %]">
+            [%  row.name %]
+            </a>
+        </td>
+        <td class="trBorders">
+            [%  row.cat_status %]
+        </td>
+        <td class="trBorders">
+            [%  row.description %]
+        </td>
+        <td class="trBorders">
+            [%  row.ip_address %]
+        </td>
+        <td class="trBorders">
+            [%  row.cluster %]
+        </td>
+        <td class="trBorders">
+            [%  row.cat_asp %]
+        </td>
+        <td class="trBorders">
+            <div class='button'>
+              <a href="[% c.uri_for_action( '/clusterpackage/edit', [], row.cluster_package_id,  ) %]">
+                <img src='/static/images/iconpack/application_form_edit.png' alt=''></img>
+              </a>
+            </div>
+        </td>
+
+        </tr>
+      [% END %]
+      </tbody>
+ 
+    </table>
+    [% ELSE %]
+
     <table class="span-20">
     <thead class="table-head">
       <tr>
@@ -173,6 +230,7 @@
       </tbody>
     </form>
     </table>
+   [% END %]
 [% PROCESS pager.tt %]
 </div>
 <script>

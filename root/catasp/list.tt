@@ -53,23 +53,10 @@
       <tr>
         <th class="select-cell" colspan="2">
           <div class="span-20">  
-                                cluster_packages
-                
-                                servers
-                
-              
                   [% order_by_column_link('name', 'Name') %]
-                
-              
                   [% order_by_column_link('service_manager', 'Service Manager') %]
-                
-              
                   [% order_by_column_link('psp_element', 'Psp Element') %]
-                
-              
                   [% order_by_column_link('sla_level', 'Sla Level') %]
-                
-               
            </div>
         </th>
       </tr>
@@ -80,29 +67,30 @@
         <tr class='[% IF i mod 2 %]bg_tr[% END %]'>
         <td class="trBorders">
         <div class='span-17 last'>
+<!-- No support for images. There'll probably never will be any for this one
           <div class='span-2 clear'><img src="/static/images/no_image.gif" width="70" height="70"></img></div>
+-->
           <div class='span-15 last'>
           
              <div class='span-15 '>
-                <div class="span-3 clear quiet">cluster_packages:</div>
+                <div class="span-3 clear quiet">Cluster packages:</div>
                 <div class="span-12 last loud">
                     
-                    [% FOR val = row.cluster_packages; val; ', '; END %]
+                    [% FOR val = row.cluster_packages %][% val %] [% UNLESS loop.last %], [% END %][% END %]
+                </div>
+              </div>
+        
+             <div class='span-15 '>
+                <div class="span-3 clear quiet">Servers:</div>
+                <div class="span-12 last loud">
+                    
+                    [% FOR val = row.servers %][% val %] [% UNLESS loop.last %], [% END %][% END %]
                     
                 </div>
               </div>
         
              <div class='span-15 '>
-                <div class="span-3 clear quiet">servers:</div>
-                <div class="span-12 last loud">
-                    
-                    [% FOR val = row.servers; val; ', '; END %]
-                    
-                </div>
-              </div>
-        
-             <div class='span-15 '>
-                <div class="span-3 clear quiet">name:</div>
+                <div class="span-3 clear quiet">Name:</div>
                 <div class="span-12 last loud">
                     
                     [%  row.name %]
@@ -111,7 +99,7 @@
               </div>
         
              <div class='span-15 '>
-                <div class="span-3 clear quiet">service_manager:</div>
+                <div class="span-3 clear quiet">Service Manager:</div>
                 <div class="span-12 last loud">
                     
                     [%  row.service_manager %]
@@ -120,7 +108,7 @@
               </div>
         
              <div class='span-15 '>
-                <div class="span-3 clear quiet">psp_element:</div>
+                <div class="span-3 clear quiet">PSP Element:</div>
                 <div class="span-12 last loud">
                     
                     [%  row.psp_element %]
@@ -129,7 +117,7 @@
               </div>
         
              <div class='span-15 '>
-                <div class="span-3 clear quiet">sla_level:</div>
+                <div class="span-3 clear quiet">SLA Level:</div>
                 <div class="span-12 last loud">
                     
                     [%  row.sla_level %]
@@ -137,8 +125,6 @@
                 </div>
               </div>
          
-
-
           </div>  
           </div>
         [% SET id = row.$pri %]

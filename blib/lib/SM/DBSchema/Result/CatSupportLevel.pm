@@ -50,6 +50,12 @@ __PACKAGE__->table("CAT_SUPPORT_LEVEL");
   is_nullable: 0
   size: 45
 
+=head2 name
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 20
+
 =head2 description
 
   data_type: 'varchar'
@@ -67,6 +73,8 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "level_nr",
+  { data_type => "varchar", is_nullable => 0, size => 45 },
+  "name",
   { data_type => "varchar", is_nullable => 0, size => 45 },
   "description",
   { data_type => "varchar", is_nullable => 0, size => 45 },
@@ -108,6 +116,6 @@ __PACKAGE__->has_many(
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 use overload '""' => sub {$_[0]->id}, fallback => 1;
-__PACKAGE__->utf8_columns(qw/support_level_id level_nr description/);
+__PACKAGE__->utf8_columns(qw/support_level_id level_nr description name/);
 
 1;

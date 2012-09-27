@@ -24,6 +24,8 @@ use base "Catalyst::Example::Controller::InstantCRUDStylish";
     # has_field 'luns' => ( type => '+SM::Controller::Storage::LunField', );
     has_field 'cat_location' => ( type => 'Select', );
     has_field 'cat_site' => ( type => 'Select', );
+    has_field 'ip_addr_1' => ( type => 'Text', size => 45, );
+    has_field 'ip_addr_2' => ( type => 'Text', size => 45, );
     has_field 'submit' => ( widget => 'Submit', );
 
     __PACKAGE__->meta->make_immutable;
@@ -42,6 +44,8 @@ use base "Catalyst::Example::Controller::InstantCRUDStylish";
     has_field 'size_in_gb' => ( type => 'Integer', required => 1, );
     has_field 'mirrored_on_storage' => ( type => 'Text', required => 1, );
     has_field 'name' => ( type => 'Text', size => 45, required => 1, );
+    has_field 'ip_addr_1' => ( type => 'Text', size => 45, required => 1, );
+    has_field 'ip_addr_2' => ( type => 'Text', size => 45, required => 1, );
     has_field 'cluster_package' => ( type => 'Select', );
     has_field 'server' => ( type => 'Select', );
     has_field 'cat_os_category' => ( type => 'Select', );

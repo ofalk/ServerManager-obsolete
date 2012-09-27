@@ -34,6 +34,7 @@ By default all the pages return 404
 
 sub default : Private {
     my ( $self, $c ) = @_;
+
     $c->response->status(404);
     $c->response->body("404 Not Found");
 };

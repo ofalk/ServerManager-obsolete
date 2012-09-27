@@ -30,7 +30,24 @@
            <a href="[% c.req.uri_with( page => pager.last_page ) %]" class="noborder">Last &raquo; </a>
        [% END %]
       </div>
+      <div class="last height35 paddingTop5 paddingBottom5">
+          <select class='default_class_select' onChange='pageSizeChange(this.options[this.selectedIndex].value);'>
+              [% FOREACH val = [10, 25, 50, 100, 250, 500] %]
+                  <option value='[% val %]' [% IF c.req.param('page_size') == val %]selected="selected"[% END %]>[% val %]</option>
+              [% END %]
+          </select>
+      </div>
    </div>
 </center>
+<!--
+document.frmPagingabc_Upper.page_sizeUpper.value;
+-->
+<script type='text/javascript'>
+function pageSizeChange(value) { 
+        var uri = "[% c.req.uri_with(page_size => '__REPLACEME__') %]";
+	n = uri.replace("__REPLACEME__", value); 
+	document.location.href = n;
+}
+</script>
 [% END %]
 

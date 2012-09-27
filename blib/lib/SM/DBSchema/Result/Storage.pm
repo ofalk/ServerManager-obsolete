@@ -71,6 +71,18 @@ __PACKAGE__->table("STORAGE");
   is_nullable: 0
   size: 45
 
+=head2 ip_addr_1
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 45
+
+=head2 ip_addr_2
+
+  data_type: 'varchar'
+  is_nullable: 0
+  size: 45
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -103,6 +115,10 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
   },
   "name",
+  { data_type => "varchar", is_nullable => 0, size => 45 },
+  "ip_addr_1",
+  { data_type => "varchar", is_nullable => 0, size => 45 },
+  "ip_addr_2",
   { data_type => "varchar", is_nullable => 0, size => 45 },
 );
 
@@ -187,6 +203,6 @@ __PACKAGE__->has_many(
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 use overload '""' => sub {$_[0]->name}, fallback => 1;
-__PACKAGE__->utf8_columns(qw/storage_id cat_storage_model_id cat_site_id cat_location_id name/);
+__PACKAGE__->utf8_columns(qw/storage_id cat_storage_model_id cat_site_id cat_location_id name ip_addr_1 ip_addr_2/);
 
 1;

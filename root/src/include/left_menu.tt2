@@ -53,8 +53,8 @@
  <!-- No support for this at the moment
   <li><a class='quiet' href='[% base %]lun'><img src='/static/images/iconpack/user_suit.png'/>Luns</a></li>
  -->
-  <li><a class='quiet' href='[% base %]storage'><img src='/static/images/iconpack/user_suit.png'/>Storages</a></li>
-  <li><a class='quiet' href='[% base %]catstoragemodel'><img src='/static/images/iconpack/user_suit.png'/>Storage Model</a></li>
+  <li><a class='quiet' href='[% base %]storage'><img src='/static/images/iconpack/database.png'/>Storages</a></li>
+  <li><a class='quiet' href='[% base %]catstoragemodel'><img src='/static/images/iconpack/database.png'/>Storage Model</a></li>
  </ul>
 
  <p/>
@@ -66,5 +66,7 @@
   <li><a class='quiet' href='[% base %]lnxuser'><img src='/static/images/iconpack/user_suit.png'/>Lnxuser</a></li>
   <li><a class='quiet' href='[% base %]oncall'><img src='/static/images/iconpack/user_suit.png'/>Oncall</a></li>
  -->
+ <!-- No support for this at the moment
   <a class='quiet' href='/logout'><img src='/static/images/iconpack/door_out.png'/>Logout</a>
+ -->
 </div>

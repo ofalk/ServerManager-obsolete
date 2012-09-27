@@ -53,138 +53,55 @@
       <tr>
         <th class="select-cell" colspan="2">
           <div class="span-20">  
-              
+                  Sort by
+<!-- TODO: Sorting by these doesn't work at the moment
                   [% order_by_column_link('cluster', 'Cluster') %]
-                
-              
                   [% order_by_column_link('operator_group', 'Operator Group') %]
-                
-              
                   [% order_by_column_link('cat_domain', 'Cat Domain') %]
-                
-              
                   [% order_by_column_link('cat_os_architecture', 'Cat Os Architecture') %]
-                
-              
-                  [% order_by_column_link('patchtime', 'Patchtime') %]
-                
-              
                   [% order_by_column_link('cat_status', 'Cat Status') %]
-                
-              
                   [% order_by_column_link('cat_site', 'Cat Site') %]
-                
-              
                   [% order_by_column_link('cat_asp', 'Cat Asp') %]
-                
-                                luns
-                
-              
                   [% order_by_column_link('cat_location', 'Cat Location') %]
-                
-              
                   [% order_by_column_link('cat_os_version', 'Cat Os Version') %]
-                
-              
                   [% order_by_column_link('cat_os_category', 'Cat Os Category') %]
-                
-              
                   [% order_by_column_link('cat_server_model', 'Cat Server Model') %]
-                
-              
                   [% order_by_column_link('cat_product_category', 'Cat Product Category') %]
-                
-              
                   [% order_by_column_link('cat_support_level', 'Cat Support Level') %]
-                
-              
+
+-->
+<!-- TODO: Works, but make no sense to order by this.
                   [% order_by_column_link('cat_accounting_type_id', 'Cat Accounting Type Id') %]
-                
-              
-                  [% order_by_column_link('hostname', 'Hostname') %]
-                
-              
-                  [% order_by_column_link('delivery_date', 'Delivery Date') %]
-                
-              
-                  [% order_by_column_link('documentation_url', 'Documentation Url') %]
-                
-              
-                  [% order_by_column_link('memory_in_mb', 'Memory In Mb') %]
-                
-              
-                  [% order_by_column_link('physical_cpus', 'Physical Cpus') %]
-                
-              
-                  [% order_by_column_link('cores_per_cpu', 'Cores Per Cpu') %]
-                
-              
-                  [% order_by_column_link('cpu_speed', 'Cpu Speed') %]
-                
-              
-                  [% order_by_column_link('application', 'Application') %]
-                
-              
-                  [% order_by_column_link('rack', 'Rack') %]
-                
-              
-                  [% order_by_column_link('ip_address', 'Ip Address') %]
-                
-              
-                  [% order_by_column_link('subnet_mask', 'Subnet Mask') %]
-                
-              
-                  [% order_by_column_link('default_gateway', 'Default Gateway') %]
-                
-              
-                  [% order_by_column_link('additional_ip', 'Additional Ip') %]
-                
-              
-                  [% order_by_column_link('management_ip', 'Management Ip') %]
-                
-              
-                  [% order_by_column_link('management_hostname', 'Management Hostname') %]
-                
-              
-                  [% order_by_column_link('delivery_note_id', 'Delivery Note Id') %]
-                
-              
-                  [% order_by_column_link('serial_nr', 'Serial Nr') %]
-                
-              
-                  [% order_by_column_link('fc_attached', 'Fc Attached') %]
-                
-              
-                  [% order_by_column_link('maintenance_end', 'Maintenance End') %]
-                
-              
-                  [% order_by_column_link('description', 'Description') %]
-                
-              
-                  [% order_by_column_link('iscsi_attached', 'Iscsi Attached') %]
-                
-              
-                  [% order_by_column_link('autodiscovery', 'Autodiscovery') %]
-                
-              
                   [% order_by_column_link('reboot_notes', 'Reboot Notes') %]
-                
-              
                   [% order_by_column_link('patch_notes', 'Patch Notes') %]
-                
-              
-                  [% order_by_column_link('asset_id', 'Asset Id') %]
-                
-              
-                  [% order_by_column_link('tags', 'Tags') %]
-                
-              
-                  [% order_by_column_link('license_end', 'License End') %]
-                
-              
                   [% order_by_column_link('license', 'License') %]
-                
-               
+-->
+                  [% order_by_column_link('hostname', 'Hostname') %]
+                  [% order_by_column_link('patchtime', 'Patchtime') %]
+                  [% order_by_column_link('delivery_date', 'Delivery Date') %]
+                  [% order_by_column_link('documentation_url', 'Documentation Url') %]
+                  [% order_by_column_link('memory_in_mb', 'Memory In Mb') %]
+                  [% order_by_column_link('physical_cpus', 'Physical Cpus') %]
+                  [% order_by_column_link('cores_per_cpu', 'Cores Per Cpu') %]
+                  [% order_by_column_link('cpu_speed', 'Cpu Speed') %]
+                  [% order_by_column_link('application', 'Application') %]
+                  [% order_by_column_link('rack', 'Rack') %]
+                  [% order_by_column_link('ip_address', 'Ip Address') %]
+                  [% order_by_column_link('subnet_mask', 'Subnet Mask') %]
+                  [% order_by_column_link('default_gateway', 'Default Gateway') %]
+                  [% order_by_column_link('additional_ip', 'Additional Ip') %]
+                  [% order_by_column_link('management_ip', 'Management Ip') %]
+                  [% order_by_column_link('management_hostname', 'Management Hostname') %]
+                  [% order_by_column_link('delivery_note_id', 'Delivery Note Id') %]
+                  [% order_by_column_link('serial_nr', 'Serial Nr') %]
+                  [% order_by_column_link('fc_attached', 'Fc Attached') %]
+                  [% order_by_column_link('maintenance_end', 'Maintenance End') %]
+                  [% order_by_column_link('description', 'Description') %]
+                  [% order_by_column_link('iscsi_attached', 'Iscsi Attached') %]
+                  [% order_by_column_link('autodiscovery', 'Autodiscovery') %]
+                  [% order_by_column_link('asset_id', 'Asset Id') %]
+                  [% order_by_column_link('tags', 'Tags') %]
+                  [% order_by_column_link('license_end', 'License End') %]
            </div>
         </th>
       </tr>

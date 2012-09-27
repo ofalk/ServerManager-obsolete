@@ -22,7 +22,9 @@
            <a href="[% c.req.uri_with( page => pager.first_page ) %]" class="noborder">&laquo; First</a>
            <a href="[% c.req.uri_with( page => pager.previous_page ) %]" class="noborder">&lt; Previous </a>
        [% END %]
+       [% IF pager.previous_page && pager.next_page %]
         |
+       [% END %]
        [% IF pager.next_page %]
            <a href="[% c.req.uri_with( page => pager.next_page ) %]" class="noborder">Next &gt; </a>
            <a href="[% c.req.uri_with( page => pager.last_page ) %]" class="noborder">Last &raquo; </a>

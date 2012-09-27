@@ -52,24 +52,14 @@
     <thead class="table-head">
       <tr>
         <th class="select-cell" colspan="2">
-          <div class="span-20">  
-                                cluster_packages
-                
-              
+          <div class="span-20">
+                  Sort by
+<!-- TODO: Sorting by cluster_software doesn't work at the moment
                   [% order_by_column_link('cat_cluster_software', 'Cat Cluster Software') %]
-                
-                                servers
-                
-              
+-->
                   [% order_by_column_link('software_version', 'Software Version') %]
-                
-              
                   [% order_by_column_link('description', 'Description') %]
-                
-              
                   [% order_by_column_link('name', 'Name') %]
-                
-               
            </div>
         </th>
       </tr>

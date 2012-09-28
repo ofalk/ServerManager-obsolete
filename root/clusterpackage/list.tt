@@ -60,8 +60,10 @@
             </th>
             [% FOREACH x IN ['Status' 'Description', 'IP Address', 'Cluster Name', 'ASP Name', 'Edit'] %]
                 <th class="select-cell">[% x %]</th>
-            </th>
             [% END %]
+        </tr>
+        <tr>
+            <th colspan="8"><hr style="height:3px;"/></th>
         </tr>
     <form method="post" id="gridform" name="gridform">
       <tbody>

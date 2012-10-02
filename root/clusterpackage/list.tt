@@ -38,7 +38,7 @@
       <h1 class='loud'>[% page_html.title || item %]</h1>
     </div>
 
-    [% IF c.req.param('view_type') == 'lowdetail' %]
+    [% UNLESS c.req.param('view_type') == 'detailed' %]
 
     <table class="span-20">
         <tr>

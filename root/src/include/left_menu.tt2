@@ -2,7 +2,7 @@
  <a class='loud' href='/'><img src='/static/images/iconpack/house.png'/>Home</a><p/><p/>
  <div class='menu_heading'>Server</div><p/>
  <ul>
-  <li><a class='quiet' href='[% base %]server'><img src='/static/images/iconpack/user_suit.png'/>Server</a></il>
+  <li><a class='quiet' href='[% base %]server'><img src='/static/images/iconpack/server.png'/>Server</a></il>
  </ul>
 
  <p/>

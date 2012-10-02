@@ -27,17 +27,6 @@
         }
         </script>
     </div>
-    <div class="span-3 last">  
-       <input type="checkbox" id="select-all-checkbox" value="All"></input> All
-       <script>
-         $('#select-all-checkbox').click(function () { 
-           var cheked_status= this.checked;
-           $('[name=select-multiple]').each( function () {
-             this.checked = cheked_status;
-             });
-           });
-       </script>
-    </div>
   </div>
 
 
@@ -51,9 +40,20 @@
 
     [% IF c.req.param('view_type') == 'lowdetail' %]
 
-    <table cass="span-20">
+    <table class="span-20">
         <tr>
-            <th class="select-cell">&nbsp;
+            <th class="select-cell">
+		    <div class="last">  
+		       <input type="checkbox" id="select-all-checkbox" value="All"></input>
+		       <script>
+			 $('#select-all-checkbox').click(function () { 
+			   var cheked_status= this.checked;
+			   $('[name=select-multiple]').each( function () {
+			     this.checked = cheked_status;
+			     });
+			   });
+		       </script>
+		    </div>
             </th>
             <th class="select-cell">
                 [% order_by_column_link('name', 'Name') %]
@@ -95,7 +95,7 @@
         <td class="trBorders">
             <div class='button'>
               <a href="[% c.uri_for_action( '/clusterpackage/edit', [], row.cluster_package_id,  ) %]">
-                <img src='/static/images/iconpack/application_form_edit.png' alt=''></img>
+                <img src='/static/images/iconpack/application_form_edit.png' alt='Edit'></img>
               </a>
             </div>
         </td>

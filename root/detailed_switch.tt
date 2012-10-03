@@ -1,0 +1,16 @@
+<form method="post" id="detailed_switch" name="detailed_switch">
+	View:
+	<select class='default_class_select' onChange='viewChange(this.options[this.selectedIndex].value);'>
+		<option value='detailed' [% IF c.req.param('view_type') == 'detailed' %]selected="selected"[% END %]>detailed</option>
+		<option value='normal' [% IF c.req.param('view_type') == '' %]selected="selected"[% END %]>normal</option>
+	</select>
+</form>
+<script type='text/javascript'>
+function viewChange(value) { 
+	if(value == 'detailed') {
+		document.location.href = "[% c.req.uri_with(view_type => 'detailed') %]";
+	} else {
+		document.location.href = "[% c.req.uri_with(view_type => 'normal') %]";
+	}
+}
+</script>

@@ -27,34 +27,48 @@
         }
         </script>
     </div>
-  </div>
-
-
-  <div class="span-20 last">
-    <div class="span-20 last">
-      [% PROCESS pager.tt %]
+    [% IF c.req.param('view_type') == 'detailed' %]
+    <div class="span-3 last">  
+       <input type="checkbox" id="select-all-checkbox" value="All"></input> All
+       <script>
+         $('#select-all-checkbox').click(function () { 
+           var cheked_status= this.checked;
+           $('[name=select-multiple]').each( function () {
+             this.checked = cheked_status;
+             });
+           });
+       </script>
     </div>
-    <div class="span-20 last viewTitleBorders">
-      <h1 class='loud'>[% page_html.title || item %]</h1>
-    </div>
+    [% END %]
 
-    [% UNLESS c.req.param('view_type') == 'detailed' %]
+	  </div>
 
-    <table class="span-28">
-    <thead class="table-head">
-      <tr>
-         <th class="select-cell">&nbsp;
-                    <div class="last">
-                       <input type="checkbox" id="select-all-checkbox" value="All"></input>
-                       <script>
-                         $('#select-all-checkbox').click(function () {
-                           var cheked_status= this.checked;
-                           $('[name=select-multiple]').each( function () {
-                             this.checked = cheked_status;
-                             });
-                           });
-                       </script>
-                    </div>
+
+	  <div class="span-20 last">
+	    <div class="span-20 last">
+	      [% PROCESS pager.tt %]
+	    </div>
+	    <div class="span-20 last viewTitleBorders">
+	      <h1 class='loud'>[% page_html.title || item %]</h1>
+	    </div>
+
+	    [% UNLESS c.req.param('view_type') == 'detailed' %]
+
+	    <table class="span-28">
+	    <thead class="table-head">
+	      <tr>
+		 <th class="select-cell">&nbsp;
+		    <div class="last">
+	       <input type="checkbox" id="select-all-checkbox" value="All"></input>
+	       <script>
+		 $('#select-all-checkbox').click(function () {
+		   var cheked_status= this.checked;
+		   $('[name=select-multiple]').each( function () {
+		     this.checked = cheked_status;
+		     });
+		   });
+	       </script>
+	    </div>
          </th>
          <th class="select-cell">
             [% order_by_column_link('hostname', 'Hostname') %]

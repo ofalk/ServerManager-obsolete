@@ -2,7 +2,7 @@
 	View:
 	<select class='default_class_select' onChange='viewChange(this.options[this.selectedIndex].value);'>
 		<option value='detailed' [% IF c.req.param('view_type') == 'detailed' %]selected="selected"[% END %]>detailed</option>
-		<option value='normal' [% IF c.req.param('view_type') == '' %]selected="selected"[% END %]>normal</option>
+		<option value='normal' [% IF c.req.param('view_type') != 'detailed' %]selected="selected"[% END %]>normal</option>
 	</select>
 </form>
 <script type='text/javascript'>

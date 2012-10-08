@@ -38,7 +38,7 @@ use base "Catalyst::Example::Controller::InstantCRUDStylish";
     has_field 'reboot_notes' => ( type => 'TextArea', );
     has_field 'autodiscovery' => ( type => 'Text', );
     has_field 'iscsi_attached' => ( type => 'Text', );
-    has_field 'description' => ( type => 'TextArea', );
+    has_field 'description' => ( type => 'Text', size => 45, maxlength => 128, label => "Description");
     has_field 'maintenance_end' => ( 
             type => 'Compound',
             apply => [
@@ -54,17 +54,17 @@ use base "Catalyst::Example::Controller::InstantCRUDStylish";
     has_field 'delivery_note_id' => ( type => 'Text', size => 45, );
     has_field 'management_hostname' => ( type => 'Text', size => 45, );
     has_field 'management_ip' => ( type => 'Text', size => 45, );
-    has_field 'additional_ip' => ( type => 'TextArea', );
+    has_field 'additional_ip' => ( type => 'TextArea', cols => "18", rows => "4", style => "addtional_ip");
     has_field 'default_gateway' => ( type => 'Text', size => 45, );
     has_field 'subnet_mask' => ( type => 'Text', size => 45, );
     has_field 'ip_address' => ( type => 'Text', size => 45, );
     has_field 'rack' => ( type => 'Text', size => 45, );
-    has_field 'application' => ( type => 'TextArea', );
-    has_field 'cpu_speed' => ( type => 'Integer', );
-    has_field 'cores_per_cpu' => ( type => 'Integer', );
-    has_field 'physical_cpus' => ( type => 'Integer', );
-    has_field 'memory_in_mb' => ( type => 'Integer', );
-    has_field 'documentation_url' => ( type => 'TextArea', );
+    has_field 'application' => ( type => 'Text', size => 64, maxlength => 256);
+    has_field 'cpu_speed' => ( type => 'Integer', label => 'CPU Speed (GHz)');
+    has_field 'cores_per_cpu' => ( type => 'Integer', label => 'Cores');
+    has_field 'physical_cpus' => ( type => 'Integer', label => 'CPUs');
+    has_field 'memory_in_mb' => ( type => 'Integer', label => 'Memory (MB)');
+    has_field 'documentation_url' => ( type => 'Text', label => 'Documentation URL', size => 64, maxlength => 256);
     has_field 'delivery_date' => ( 
             type => 'Compound',
             apply => [
@@ -75,23 +75,23 @@ use base "Catalyst::Example::Controller::InstantCRUDStylish";
             ],
         );
         has_field 'delivery_date.year';        has_field 'delivery_date.month';        has_field 'delivery_date.day';
-    has_field 'hostname' => ( type => 'Text', size => 45, required => 1, );
-    has_field 'cat_accounting_type_id' => ( type => 'Integer', );
-    has_field 'cluster' => ( type => 'Select', );
-    has_field 'operator_group' => ( type => 'Select', );
-    has_field 'cat_domain' => ( type => 'Select', );
-    has_field 'cat_os_architecture' => ( type => 'Select', );
-    has_field 'patchtime' => ( type => 'Select', );
-    has_field 'cat_status' => ( type => 'Select', );
-    has_field 'cat_site' => ( type => 'Select', );
-    has_field 'cat_asp' => ( type => 'Select', );
+    has_field 'hostname' => ( type => 'Text', size => 45, required => 1, label => 'Hostname');
+    has_field 'cat_accounting_type_id' => ( type => 'Integer', label => '', style => 'display: name;');
+    has_field 'cluster' => ( type => 'Select', label => 'Cluster');
+    has_field 'operator_group' => ( type => 'Select', label => 'Operator group');
+    has_field 'cat_domain' => ( type => 'Select', label => 'Domain');
+    has_field 'cat_os_architecture' => ( type => 'Select', label => 'OS Arch');
+    has_field 'patchtime' => ( type => 'Select', label => 'Patch time');
+    has_field 'cat_status' => ( type => 'Select', label => 'Status',);
+    has_field 'cat_site' => ( type => 'Select', label => 'Site');
+    has_field 'cat_asp' => ( type => 'Select', label => 'ASP');
     # has_field 'luns' => ( type => '+SM::Controller::Server::LunField', );
-    has_field 'cat_location' => ( type => 'Select', );
-    has_field 'cat_os_version' => ( type => 'Select', );
-    has_field 'cat_os_category' => ( type => 'Select', );
-    has_field 'cat_server_model' => ( type => 'Select', );
-    has_field 'cat_product_category' => ( type => 'Select', );
-    has_field 'cat_support_level' => ( type => 'Select', );
+    has_field 'cat_location' => ( type => 'Select', label => 'Location');
+    has_field 'cat_os_version' => ( type => 'Select', label => 'OS Version');
+    has_field 'cat_os_category' => ( type => 'Select', style => 'display: none;', label => '');
+    has_field 'cat_server_model' => ( type => 'Select', label => 'Server Model');
+    has_field 'cat_product_category' => ( type => 'Select', label => 'Product Category');
+    has_field 'cat_support_level' => ( type => 'Select', label => 'Support level');
     has_field 'submit' => ( widget => 'Submit', );
 
     __PACKAGE__->meta->make_immutable;
@@ -106,7 +106,7 @@ use base "Catalyst::Example::Controller::InstantCRUDStylish";
     use namespace::autoclean;
 
     has_field 'volume_group' => ( type => 'Text', size => 45, );
-    has_field 'description' => ( type => 'TextArea', );
+    has_field 'description' => ( type => 'Text', size => 45, maxlength => 128);
     has_field 'size_in_gb' => ( type => 'Integer', required => 1, );
     has_field 'mirrored_on_storage' => ( type => 'Text', required => 1, );
     has_field 'name' => ( type => 'Text', size => 45, required => 1, );

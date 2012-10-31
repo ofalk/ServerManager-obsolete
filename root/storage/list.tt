@@ -27,6 +27,7 @@
         }
         </script>
     </div>
+    [% IF c.req.param('view_type') == 'detailed' %]
     <div class="span-3 last">  
        <input type="checkbox" id="select-all-checkbox" value="All"></input> All
        <script>
@@ -38,6 +39,11 @@
            });
        </script>
     </div>
+    [% END %]
+    <div class="span-3 last" align="right">
+        [% PROCESS detailed_switch.tt %]
+    </div>
+
   </div>
 
 
@@ -48,6 +54,81 @@
     <div class="span-20 last viewTitleBorders">
       <h1 class='loud'>[% page_html.title || item %]</h1>
     </div>
+
+    [% UNLESS c.req.param('view_type') == 'detailed' %]
+
+    <table class="span-28">
+      <tr>
+        <th class="select-cell">
+            <div class="last">
+               <input type="checkbox" id="select-all-checkbox" value="All"></input>
+               <script>
+                 $('#select-all-checkbox').click(function () {
+                   var cheked_status= this.checked;
+                   $('[name=select-multiple]').each( function () {
+                     this.checked = cheked_status;
+                     });
+                   });
+               </script>
+            </div>
+        </th>
+        <th class="select-cell">
+            [% order_by_column_link('name', 'Name') %]
+        </th>
+        <th class="select-cell">
+                [% order_by_column_link('ip_addr_1', 'IP 1') %]
+        </th>
+        <th class="select-cell">
+                [% order_by_column_link('ip_addr_2', 'IP 2') %]
+        </th>
+        [% FOREACH x IN ['Model' 'Location', 'Site'] %]
+                <th class="select-cell">[% x %]</th>
+        [% END %]
+      </tr>
+      <tr>
+        <th colspan="8"><hr style="height:3px;"/></th>
+      </tr>
+    <form method="post" id="gridform" name="gridform">
+      <tbody>
+    [% SET i = 1; WHILE (row = result.next) ; i = i + 1%]
+        <tr class='[% IF i mod 2 %]bg_tr[% END %]'>
+        <td class="trBorders">
+            <input name="select-multiple" type="checkbox" value="[% row.storage_id %]"></input>
+        </td>
+        <td class="trBorders">
+            <a class="positive" href="[% c.uri_for_action( '/storage/view', [], row.storage_id,  ) %]">
+            [% row.name %]
+            </a>
+        </td>
+        <td class="trBorders">
+            [% row.ip_addr_1 %]
+        </td>
+        <td class="trBorders">
+            [% row.ip_addr_2 %]
+        </td>
+        <td class="trBorders">
+            [% row.cat_storage_model %]
+        </td>
+        <td class="trBorders">
+            [% row.cat_location %]
+        </td>
+        <td class="trBorders">
+            [% row.cat_site %]
+        </td>
+        <td class="trBorders">
+            <div class='button'>
+              <a href="[% c.uri_for_action( '/storage/edit', [], row.storage_id,  ) %]">
+                <img src='/static/images/iconpack/application_form_edit.png' alt='Edit'></img>
+              </a>
+            </div>
+        </td>
+        </tr>
+    [% END %]
+      </tbody>
+    </form>
+    </table>
+    [% ELSE %]
+
     <table class="span-20">
     <thead class="table-head">
       <tr>
@@ -185,6 +266,7 @@
       </tbody>
     </form>
     </table>
+    [% END %]
 [% PROCESS pager.tt %]
 </div>
 <script>

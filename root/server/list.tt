@@ -113,7 +113,7 @@
                 [% row.cat_status %]
         </td>
         <td class="trBorders">
-                [% row.cat_os_version %]
+                <nobr>[% row.cat_os_version %]</nobr>
         </td>
         <td class="trBorders">
                 [% row.cat_product_category %]
